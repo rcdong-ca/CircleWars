@@ -1,3 +1,8 @@
+This was a prject for my intro to software engineering class. This game was created as a group of 5, with myself, Jacob Duaz, Cole Stankov, Jasper Quan, and Gaurav Modi
+
+
+
+
 # node-js-getting-started
 
 A barebones Node.js app using [Express 4](http://expressjs.com/).
