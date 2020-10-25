@@ -1,0 +1,134 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="stylesheets/main.css">
+    <script type="text/javascript" src="javascript/home.js"></script>
+    <script src="https://fathomless-castle-05798.herokuapp.com/socket.io/socket.io.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>Main menu</title>
+</head>
+<body>
+    <div>
+    <div class="statsboard">
+            <table>
+                    <tr>
+
+                      <td> individual's stats</td>
+                      <td><%=indv_stats[0].u2%></td>
+                      <td>wins: <%=indv_stats[0].w2%></td>
+                      <td>loss: <%=indv_stats[0].l2%></td>
+                      <td>kills: <%=indv_stats[0].k2%></td>
+                      <td>deaths: <%=indv_stats[0].d2%></td>
+                   </table>
+
+    </div>
+        <div class="menuBackground" id="menuBg">
+            <div class="menuTabs">
+                <button class="tabButtons" onclick="tabSwitching(playTab, 'play', 'menuBg', '#0ff0fc')" id="playTab" style="color: #0ff0fc;">Play</button>
+                <button class="tabButtons" onclick="tabSwitching(invTab, 'inventory', 'menuBg', '#21fc0d')" id="invTab"  style="color:#21fc0d">Inventory</button>
+                <button class="tabButtons" onclick="tabSwitching(statsTab, 'stats', 'menuBg', '#8f00f1')" id="statsTab" style="color: #8f00f1;">Stats</button>
+                <button class="tabButtons" onclick="tabSwitching(shopTab, 'shop', 'menuBg', '#fffc44')" id="shopTab" style="color: #fffc44;">Shop</button>
+                <button class="tabButtons" onclick="tabSwitching(settingsTab, 'settings', 'menuBg', '#ff2929')" id="settingsTab" style="color: #ff2929;">Settings</button>
+
+                <% if (indv_stats[0].type==4) { %>
+                    <button class="tabButtons" onclick="tabSwitching(adminsTab, 'admins', 'menuBg', '#d4af37')" id="adminsTab" style="color: #d4af37;">Admin</button>
+                    <div id="admins" class="tabContent" >
+                        <h1> You are an admin</h1>
+                      </div>
+                <% } %>
+            </div>
+
+
+            <div id="play" class="tabContent" >
+                <div class="instructions">
+                    <p style="color:#0ff0fc;">instructions</p>
+                </div>
+                <form action="/play" method="post" style="">
+                    <button class="playButton" onclick="" id>Play</button>
+                </form>
+            </div>
+
+            <div id="inventory" class="tabContent">
+                <p style="color:#21fc0d;"> This is the players inventory</p>
+                <div>
+
+                </div>
+            </div>
+
+            <div id="stats" class="tabContent">
+                    <p style="color: white">Top 5 players</p>
+                    <table>
+
+                            <% indv_stats.forEach(function(i_s) { %>
+                            <tr>
+                              <td><%=i_s.username%></td>
+                              <td>wins: <%=i_s.wins%></td>
+                              <td>loss: <%=i_s.loss%></td>
+                              <td>kills: <%=i_s.kills%></td>
+                              <td>deaths: <%=i_s.deaths%></td>
+                              <%}); %>
+                            </tr>
+                           </table>
+
+            </div>
+
+
+            <div id="shop" class="tabContent">
+                    <p>hello this is shop content</p>
+            </div>
+
+
+            <div id="settings" class="tabContent">
+                    <p>hello this is settings content</p>
+            </div>
+
+            <div id="admin" class="tabContent">
+                    <p>hello this is admin content</p>
+            </div>
+
+        </div>
+
+        <div class="chatBox">
+         <ul id="messages"></ul>
+          <form action="/home" method="POST" id="chatForm">
+            <input id="txt" autocomplete="off" autofocus="on" placeholder="type your message here..." /><button class="chatSend">Send</button>
+          </form>
+
+          <script>
+            //var socket = io.connect(window.location.hostname + ':' + <%=connection%>); //Local connection ONLY
+            var socket = io.connect(window.location.hostname); //server connection ONLY
+
+            // submit text message without reload/refresh the page
+            $('#chatForm').submit(function(e){
+                e.preventDefault(); // prevents page reloading
+                console.log('got here');
+                socket.emit('chat_message', $('#txt').val());
+                $('#txt').val('');
+                return false;
+            });
+
+            //appent text if someone types
+            socket.on('chat_message', function(msg){
+                console.log('got here 2');
+                $('#messages').append($('<li>').html(msg));
+                $("#messages").animate({scrollTop: $('#messages').prop("scrollHeight")},0);
+            });
+
+            // append text if someone is online
+            socket.on('is_online', function(username) {
+                console.log('got here 3');
+                $('#messages').append($('<li>').html(username));
+            });
+
+            var username = <%- JSON.stringify(indv_stats[0].u2)%>;
+            socket.emit('username', username);
+           </script>
+        </div>
+
+        <form action="/logout" method="get">
+           <button id="logout" type="submit" value="Logout">Logout</button>
+        </form>
+</body>
+</html>

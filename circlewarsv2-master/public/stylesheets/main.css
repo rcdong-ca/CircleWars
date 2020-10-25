@@ -1,0 +1,217 @@
+/*/////////////////For Chat Box///////////////*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+ 
+form {
+  background: #fff;
+  padding: 3px;
+  position: fixed;
+  bottom: 0; width: 20%;
+  border-color: #000;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-radius: 20px;
+}
+ 
+form input {
+  border-style: solid;
+  border-width: 1px;
+  padding: 10px;
+  width: 70%;
+  margin-left: 2%
+}
+ 
+.chatSend {
+  width: 20%;
+  background: rgb(130, 224, 255);
+  border: none;
+  padding: 10px;
+  margin-left: 5%;
+}
+ 
+ul{
+  max-height:760px;
+  overflow:auto;
+}
+ 
+#messages {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+#messages li { padding: 5px 10px; }
+#messages li:nth-child(odd) { background: #eee; }
+/*//////////////////////////////////////////////*/
+ 
+.jumbotron {
+  background: #532F8C;
+  color: white;
+  padding-bottom: 80px;
+}
+ 
+.jumbotron .btn-primary {
+    background: #845ac7;
+    border-color: #845ac7;
+}
+ 
+.jumbotron .btn-primary:hover {
+      background: #7646c1;
+}
+ 
+.jumbotron p {
+    color: #d9ccee;
+    max-width: 75%;
+    margin: 1em auto 2em;
+}
+ 
+.navbar + .jumbotron {
+    margin-top: -20px;
+}
+ 
+  .jumbotron .lang-logo {
+    display: block;
+    background: #B01302;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    border: 2px solid white;
+  }
+ 
+.jumbotron .lang-logo img {
+      max-width: 100%;
+}
+ 
+body{
+  overflow: auto;
+  background-image: url(PurpleGrid.gif);
+}
+ 
+.statsboard{
+  display: table;
+  width: 90%;
+  height:15%;
+  border: 2px solid black;
+  background: rgba(0, 0, 0, 0.4);
+ 
+  border-radius: 20px;
+  overflow: hidden;
+  margin-left: 3%;
+  margin-right: 5%;
+}
+ 
+.menuBackground{
+  width: 70%;
+  height: 80%;
+  border: 2px solid;
+  background: rgba(0, 0, 0, 0.5);
+  float:left;
+ 
+  border-radius: 20px;
+  overflow: hidden;
+  margin-left: 3%;
+}
+ 
+.chatBox{
+  float:left;
+  width: 20%;
+  height: 80%;
+  border: 2px solid black;
+  background: white;
+  border-radius: 20px;
+}
+ 
+.menuTabs{
+  display: table;
+  width:100%;
+  height:5%;
+  border: 2px solid black;
+}
+ 
+.tabButtons{
+  width: 16%;
+  height:100%;
+  display: table-cell;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s;
+ 
+  border-left: none;
+  border-top: none;
+  border-right: none;
+  font-weight: bold;
+  font-size: 130%;
+  background: rgba(0, 0, 0, 0.4);
+}
+ 
+.tabContent{
+  display: none;
+ 
+}
+#stats {
+  padding: 20px;
+}
+ 
+.instructions{
+  color: #0ff0fc;
+  border: 2px solid #0ff0fc;
+  width: 50%;
+  height:50%;
+  margin-left: 25%;
+  margin-top: 2%;
+}
+ 
+.playButton{
+  color: #0ff0fc;
+  border: 2px solid #0ff0fc;
+  background: rgba(0, 0, 0, 0.4);
+  margin-left: 40%;
+  margin-top: 10%;
+  width: 20%;
+  height: 10%;
+  font-weight: bold;
+  font-size: 300%;
+}
+ 
+th, td {
+  border: 1px solid white;
+  padding: 15px;
+  text-align:left;
+  text-align: center;
+  color: white;
+ 
+}
+ 
+.topStats{
+    color:#ff2929;
+    font-size: 20px;
+}
+ 
+.heading{
+    text-align: center;
+    color: black;
+    font-size: 30px;
+    text-shadow: -2px 0 #ed21ff, 0 2px #ed21ff, 2px 0 #ed21ff, 0 -2px #ed21ff, 1px 3px 0 #ed21ff, 1px 8px 0 #ed21ff, 1px 13px 5px #ed21ff;
+}
+h1{
+  color:white;
+}
+ 
+#logout{
+    all:revert !important;
+    position:fixed;
+    top: 15px;
+    right: 15px;
+    background-color: red;
+    border: none;
+    color: black;
+    padding: 15px 45px;
+    text-align: center;
+    font-size: 10px;
+    margin: 4px 2px;
+    border-radius:8px;
+}
